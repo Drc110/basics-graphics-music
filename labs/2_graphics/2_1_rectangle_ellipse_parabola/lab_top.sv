@@ -84,7 +84,27 @@ module lab_top
         green = '0;
         blue  = '0;
 
-        if (   x >= screen_width  / 2
+        if (y < screen_height / 2) begin
+            if ((x < (screen_width / 2) + 50) && (x > (screen_width / 2) - 50)) begin
+                if (y**2 + x**2 > ((screen_width/2)+50)) begin
+                    blue = 0;
+                    red = '1;
+                    green = '0;
+                end
+            end
+            else begin
+                blue = '1;
+                red = '0;
+                green = '0;
+            end
+        end
+        else begin
+            blue = '0;
+            red = '0;
+            green = '1;
+        end
+
+/*         if (   x >= screen_width  / 2
              & x <  screen_width  * 2 / 3
              & y >= screen_height / 2
              & y <  screen_height * 2 / 3 )
@@ -105,7 +125,7 @@ module lab_top
         end
 
         if (x_2 [w_x +: w_y] < y)  // Parabola
-            blue = key [1] ? '1 : y10 [$left (y10) -: w_blue];
+            blue = key [1] ? '1 : y10 [$left (y10) -: w_blue]; */
     end
 
 endmodule
